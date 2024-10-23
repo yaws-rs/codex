@@ -28,12 +28,14 @@ pub use error::*;
 //---------------------------------------------------------
 
 mod types;
+#[cfg(any(feature = "encode", feature = "decode"))]
 pub use types::*;
 
 //--------------------------------------------------------
 // Encoding implementations with type conversions
 //--------------------------------------------------------
 
+#[cfg(feature = "encode")]
 pub(crate) mod encode;
 
 //--------------------------------------------------------

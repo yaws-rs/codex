@@ -11,8 +11,10 @@ repository = "https://github.com/yaws-rs/codex"
 categories = ["science"]
 
 [features]
-default = ["std", "decode", "encode"]
+default = ["fixed", "decode", "encode"]
 alloc = []
+fixed = []
+vec = ["alloc"]
 decode = ["dep:logos"]
 encode = ["dep:logos"]
 std = []
@@ -25,15 +27,19 @@ insta = { version = "1.38" }
 rstest = { version = "0.19" }
 criterion = { version = "0.5" }
 
-#[[bench]]
-#name = "bencher"
-#required-features = ["encode", "decode"]
-#harness = false
+[[bench]]
+name = "bencher"
+harness = false
 
-#[[example]]
-#name = "codex_percent_encode"
-#required-features = ["encode"]
-#harness = false
+[[example]]
+name = "encode_fixed"
+required-features = ["encode", "fixed"]
+harness = false
+
+[[example]]
+name = "encode_vec"
+required-features = ["encode", "vec"]
+harness = false
 
 #[[example]]
 #name = "codex_percent_decode"
