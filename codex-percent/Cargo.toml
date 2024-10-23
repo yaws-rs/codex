@@ -1,0 +1,47 @@
+[package]
+name = "codex-percent"
+version = "0.1.0-absolut0"
+edition = "2021"
+description = "Percent Encoding for the 1%"
+homepage = "https://github.com/yaws-rs/codex"
+keywords = ["http", "uri", "builder", "parser"]
+license = "Apache-2.0/MIT"
+readme = "README.md"
+repository = "https://github.com/yaws-rs/codex"
+categories = ["science"]
+
+[features]
+default = ["fixed", "decode", "encode"]
+alloc = []
+fixed = []
+vec = ["alloc"]
+decode = ["dep:logos"]
+encode = ["dep:logos"]
+std = []
+
+[dependencies]
+logos = { version = "0.14", optional = true, default-features = false, features = ["export_derive"] }
+
+[dev-dependencies]
+insta = { version = "1.38" }
+rstest = { version = "0.19" }
+criterion = { version = "0.5" }
+
+[[bench]]
+name = "bencher"
+harness = false
+
+[[example]]
+name = "encode_fixed"
+required-features = ["encode", "fixed"]
+harness = false
+
+[[example]]
+name = "encode_vec"
+required-features = ["encode", "vec"]
+harness = false
+
+#[[example]]
+#name = "codex_percent_decode"
+#required-features = ["decode"]
+#harness = false
