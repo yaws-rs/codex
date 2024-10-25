@@ -18,7 +18,7 @@ With `FixedDecoder`
 cargo add codex-percent --no-default-features --features fixed,decoder
 ```
 
-## Allocating Vec
+### Allocating Vec
 
 This uses allocating vec as output where you provide a mutable Vec that will re-allocate if needed.
 

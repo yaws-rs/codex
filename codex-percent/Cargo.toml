@@ -1,6 +1,6 @@
 [package]
 name = "codex-percent"
-version = "0.1.0-absolut0"
+version = "0.1.0-absolut1"
 edition = "2021"
 description = "Percent Encoding for the 1%"
 homepage = "https://github.com/yaws-rs/codex"
@@ -9,6 +9,9 @@ license = "Apache-2.0/MIT"
 readme = "README.md"
 repository = "https://github.com/yaws-rs/codex"
 categories = ["no-std", "science"]
+
+[package.metadata.docs.rs]
+features = ["fixed", "vec", "decode", "encode"]
 
 [features]
 default = ["fixed", "decode", "encode"]
@@ -37,11 +40,16 @@ required-features = ["encode", "fixed"]
 harness = false
 
 [[example]]
+name = "decode_fixed"
+required-features = ["decode", "fixed"]
+harness = false
+
+[[example]]
 name = "encode_vec"
 required-features = ["encode", "vec"]
 harness = false
 
-#[[example]]
-#name = "codex_percent_decode"
-#required-features = ["decode"]
-#harness = false
+[[example]]
+name = "decode_vec"
+required-features = ["decode", "vec"]
+harness = false
