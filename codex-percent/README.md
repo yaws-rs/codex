@@ -1,5 +1,13 @@
 # codex-percnet
 
+[![Discord chat][discord-badge]][discord-url]
+[![Crates.io](https://img.shields.io/crates/v/codex-percent.svg)](https://crates.io/crates/codex-percent)
+[![Docs](https://docs.rs/codex-percent/badge.svg)](https://docs.rs/codex-percent)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![MSRV](https://img.shields.io/badge/MSRV-1.70.0-blue)
+
+
 `no_std` friendly percent en-de-coding for the 1%
 
 ## Usage
