@@ -9,6 +9,7 @@ license = "Apache-2.0/MIT"
 readme = "README.md"
 repository = "https://github.com/yaws-rs/codex"
 categories = ["no-std", "science"]
+exclude = ["assets/"]
 
 [package.metadata.docs.rs]
 features = ["fixed", "vec", "decode", "encode"]

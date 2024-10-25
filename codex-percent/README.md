@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![MSRV](https://img.shields.io/badge/MSRV-1.70.0-blue)
 
+![meme again asking you to reduce re-allocations]((https://cdn.jsdelivr.net/gh/yaws-rs/codex@main/codex-percent/assets/bernie.jpg)
 
 `no_std` friendly percent en-de-coding for the 1%
 
