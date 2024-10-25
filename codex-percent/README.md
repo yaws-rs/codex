@@ -79,3 +79,6 @@ If you know the output size and can deal with a potential panic out-of-bounds, `
 Panic free `VecEncoder` *capped* means `Vec::with_capacity()` and re-use if needed e.g. with `.clear()`
 
 If you have large output, use `VecEncoder` as arrays are more suitable for small outputs.
+
+[discord-badge]: https://img.shields.io/discord/934761553952141402.svg?logo=discord
+[discord-url]: https://discord.gg/rXVsmzhaZa
