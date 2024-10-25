@@ -1,4 +1,4 @@
-# codex-percnet
+# codex-percent
 
 [![Discord chat][discord-badge]][discord-url]
 [![Crates.io](https://img.shields.io/crates/v/codex-percent.svg)](https://crates.io/crates/codex-percent)
