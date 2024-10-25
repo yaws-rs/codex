@@ -4,17 +4,48 @@
 
 ## Usage
 
-With StaticEncoder 
-```ignore
-cargo add codex-percent --no-default-features --features static,encoder
-```
-See [./examples/encode_static.rs]
+### Fixed Array
 
-With VecEncoder (uses `alloc::vec`)
+This uses fixed bytearray as output where you are responsible of ensuring large enough output size.
+
+With `FixedEncoder`
+```ignore
+cargo add codex-percent --no-default-features --features fixed,encoder
+```
+
+With `FixedDecoder`
+```ignore
+cargo add codex-percent --no-default-features --features fixed,decoder
+```
+
+## Allocating Vec
+
+This uses allocating vec as output where you provide a mutable Vec that will re-allocate if needed.
+
+With `VecEncoder` (uses `alloc::vec`)
 ```ignore
 cargo add codex-percent --no-default-features --features vec,encoder
 ```
-See [./examples/encode_static.rs]
+
+With `VecDecoder` (uses `alloc::vec`)
+```ignore
+cargo add codex-percent --no-default-features --features vec,decoder
+```
+
+See [examples](./examples).
+
+## Decoder Benchmarks
+
+In MacBook 13" M1 comparitative results:
+
+
+| Type         | Scenario                       | Perf                            |
+| :---         | :---                           | :---                            |
+| FixedDecoder | Poop-U1-4B                     | [16.897 ns 16.928 ns 16.969 ns] |
+| FixedDecoder | Poop-U3-12B                    | [38.939 ns 39.021 ns 39.113 ns] |
+| FixedDecoder | Poop-U6-24B                    | [73.677 ns 73.746 ns 73.830 ns] |
+| VecDecoder   | Poop-U6-24B straightline       | [149.90 ns 151.21 ns 152.46 ns] |
+| VecDecoder   | Poop-U6-24B capped, re-use     | [83.460 ns 83.646 ns 83.889 ns] |
 
 ## Encoder Benchmarks
 
