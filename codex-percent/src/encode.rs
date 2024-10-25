@@ -1,4 +1,4 @@
-//! Encode impl
+//! Encode impls
 
 #[cfg(feature = "fixed")]
 mod fixed;

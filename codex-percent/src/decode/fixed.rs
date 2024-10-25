@@ -37,28 +37,14 @@ impl<'i, const S: usize> Decoder<'i, S> {
                         let byte_out = hex2byte(pair)?;
                         self.cur_block[cur_i] = byte_out;
                         cur_i = cur_i + 1;
-//                        panic!("Ok got chunk {:?}", pair);
                     }
                 }
-                /*
-                Ok(DecodeToken::Unreserved(alphanum)) => {
+                Ok(DecodeToken::EverythingElse(alphanum)) => {
                     let needed = alphanum.as_bytes().len();
                     let fill_to = cur_i + needed;
                     self.cur_block[cur_i..fill_to].copy_from_slice(&alphanum.as_bytes()[0..needed]);
                     cur_i += needed;
                 }
-                Ok(DecodeToken::NotUnreserved(notalphanum)) => {
-                    let mut bytes = notalphanum.bytes();
-                    while let Some(a) = bytes.next() {
-                        let (higher, lower) = byte2hex(a, &HEX_CHARS_UPPER);
-                        let needed = 3;
-                        self.cur_block[cur_i] = 37;
-                        self.cur_block[cur_i + 1] = higher;
-                        self.cur_block[cur_i + 2] = lower;
-                        cur_i = cur_i + needed;
-                    }
-            }
-                */
                 _ => {
                     return Err(DecoderError::BorkedExperimental(lexer.span().start));
                 }
@@ -73,60 +59,61 @@ mod test {
     use super::*;
 
     #[test]
+    fn f_10_direct_copy() {
+        let s = "1234567890";
+        let expected: [u8; 10] = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48];
+
+        let mut d = Decoder::<10>::init();
+        let c = d.decode(s).unwrap();
+        let utf8 = core::str::from_utf8(d.cur_block());
+
+        assert_eq!(c, 10);
+        assert_eq!(d.cur_block(), &expected);
+        assert_eq!(utf8, Ok(s));
+    }
+
+    #[test]
     fn f_10_poop() {
         let poop_str = "%F0%9F%92%A9";
         let expected: [u8; 4] = [240, 159, 146, 169];
+        let expected_utf8 = "💩";
+
         let mut d = Decoder::<4>::init();
         let c = d.decode(poop_str).unwrap();
         let utf8 = core::str::from_utf8(d.cur_block());
 
         assert_eq!(c, 4);
         assert_eq!(d.cur_block(), &expected);
-        assert_eq!(utf8, Ok("💩"));
+        assert_eq!(utf8, Ok(expected_utf8));
     }
-/*
-    #[test]
-    fn f_10_direct_copy() {
-        let s = "1234567890";
 
-        let mut e = Decoder::<10>::init();
-        let f = e.encode(s).unwrap();
-
-        assert_eq!(f, 10);
-        assert_eq!(e.cur_block, [49, 50, 51, 52, 53, 54, 55, 56, 57, 48]);
-    }
-    #[test]
-    fn f_10_poop() {
-        let s = "💩";
-
-        let mut e = Decoder::<12>::init();
-        let res = e.encode(s).unwrap();
-
-        assert_eq!(res, 12);
-        let t = core::str::from_utf8(e.cur_block.as_slice());
-
-        assert_eq!(t, Ok("%F0%9F%92%A9"));
-    }
     #[test]
     fn f_10_spaces() {
-        let s = "          ";
+        let poop_str = "%20%20%20%20%20%20%20%20%20%20";
+        let expected: [u8; 10] = [32, 32, 32, 32, 32, 32, 32, 32, 32, 32];
+        let expected_utf8 = "          ";
 
-        let mut e = Decoder::<30>::init();
-        let f = e.encode(s).unwrap();
+        let mut d = Decoder::<10>::init();
+        let c = d.decode(poop_str).unwrap();
+        let utf8 = core::str::from_utf8(d.cur_block());
 
-        assert_eq!(f, 30);
-
-        let t = core::str::from_utf8(e.cur_block.as_slice());
-        assert_eq!(t, Ok("%20%20%20%20%20%20%20%20%20%20"));
-
-        assert_eq!(
-            e.cur_block,
-            [
-                37, 50, 48, 37, 50, 48, 37, 50, 48, 37, 50, 48, 37, 50, 48, 37, 50, 48, 37, 50, 48,
-                37, 50, 48, 37, 50, 48, 37, 50, 48
-            ]
-        );
+        assert_eq!(c, 10);
+        assert_eq!(d.cur_block(), &expected);
+        assert_eq!(utf8, Ok(expected_utf8));
     }
- */
-}
 
+    #[test]
+    fn f_10_mixmash() {
+        let poop_str = "%20 %20 %20";
+        let expected: [u8; 5] = [32, 32, 32, 32, 32];
+        let expected_utf8 = "     ";
+
+        let mut d = Decoder::<5>::init();
+        let c = d.decode(poop_str).unwrap();
+        let utf8 = core::str::from_utf8(d.cur_block());
+
+        assert_eq!(c, 5);
+        assert_eq!(d.cur_block(), &expected);
+        assert_eq!(utf8, Ok(expected_utf8));
+    }
+}

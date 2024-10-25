@@ -40,11 +40,11 @@ fn hex2byte(pair: [u8; 2]) -> Result<u8, DecoderError> {
 mod test {
 
     use super::*;
-    
+
     #[test]
     fn hex2bytes_sp() {
-	    let h: [u8; 2] = [50, 48];
-	    let b = hex2byte(h);
-	    assert_eq!(b, Ok(32));
-    }    
+        let h: [u8; 2] = [50, 48];
+        let b = hex2byte(h);
+        assert_eq!(b, Ok(32));
+    }
 }
