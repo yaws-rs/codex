@@ -42,4 +42,5 @@ pub(crate) mod encode;
 // Builder implementations with type conversions
 //--------------------------------------------------------
 
-//pub(crate) mod decode;
+#[cfg(feature = "decode")]
+pub(crate) mod decode;
