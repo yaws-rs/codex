@@ -19,12 +19,12 @@ This uses fixed bytearray as output where you are responsible of ensuring large 
 
 With `FixedEncoder`
 ```ignore
-cargo add codex-percent --no-default-features --features fixed,encoder
+cargo add codex-percent --no-default-features --features fixed,encode
 ```
 
 With `FixedDecoder`
 ```ignore
-cargo add codex-percent --no-default-features --features fixed,decoder
+cargo add codex-percent --no-default-features --features fixed,decode
 ```
 
 ### Allocating Vec
@@ -33,12 +33,12 @@ This uses allocating vec as output where you provide a mutable Vec that will re-
 
 With `VecEncoder` (uses `alloc::vec`)
 ```ignore
-cargo add codex-percent --no-default-features --features vec,encoder
+cargo add codex-percent --no-default-features --features vec,encode
 ```
 
 With `VecDecoder` (uses `alloc::vec`)
 ```ignore
-cargo add codex-percent --no-default-features --features vec,decoder
+cargo add codex-percent --no-default-features --features vec,decode
 ```
 
 See [examples](./examples).

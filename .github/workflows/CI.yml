@@ -32,13 +32,13 @@ jobs:
       - uses: taiki-e/install-action@cargo-hack
       # No default features build
       - name: no_std / encoder-fixed
-        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features encoder,fixed
+        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features encode,fixed
       - name: no_std / decoder-fixed
-        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features decoder,fixed
+        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features decode,fixed
       - name: no_std / decoder-vec
-        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features decoder,vec
+        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features decode,vec
       - name: no_std / encoder-vec
-        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features encoder,vec
+        run: cargo build -p ${{ matrix.crate }} --target thumbv7em-none-eabi --release --no-default-features --features encode,vec
 
   check-test-all:
     name: test, fmt, clippy
