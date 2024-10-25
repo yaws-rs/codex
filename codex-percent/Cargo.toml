@@ -1,6 +1,6 @@
 [package]
 name = "codex-percent"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Percent Encoding for the 1%"
 homepage = "https://github.com/yaws-rs/codex"
