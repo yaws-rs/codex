@@ -12,9 +12,6 @@
 //#[cfg(all(feature = "alloc", not(feature = "std")))]
 //extern crate alloc;
 
-#[cfg(all(not(feature = "decode"), not(feature = "encode")))]
-compile_error!("Pick features decode and / or encode as neither is default on.");
-
 //---------------------------------------------------------
 // Re-exports on external types we may use
 //---------------------------------------------------------

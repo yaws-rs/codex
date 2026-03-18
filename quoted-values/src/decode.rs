@@ -46,7 +46,7 @@ impl BackslashRemoval {
             };
             if y_shift {
                 if skip_mark != -1 {
-                    let skip_start = skip_mark as usize + 1;
+                    let skip_start = skip_mark as usize + skips;
                     let skip_end = x;
 
                     input.copy_within(skip_start..skip_end, skip_mark as usize);
@@ -87,6 +87,7 @@ mod test {
     #[case("", "")]
     #[case("FOO\\\"BAR", "FOO\"BAR")]
     #[case("FOO\\\"BAR\\\"BAZ", r##"FOO"BAR"BAZ"##)]
+    #[case("FOO\\\"BAR\\\"BAZ\\\"BAR\\\"", r##"FOO"BAR"BAZ"BAR""##)]
     fn okays(#[case] input: String, #[case] expected: String) {
         let mut bytes = input.into_bytes();
         let skipped = BackslashRemoval::in_place(&mut bytes).unwrap();
