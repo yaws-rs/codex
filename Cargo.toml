@@ -1,4 +1,4 @@
 [workspace]
-members = ["codex-percent"]
+members = ["codex-percent", "quoted-values"]
 exclude = ["cmp"]
 resolver = "2"

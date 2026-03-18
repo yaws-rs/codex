@@ -1,0 +1,39 @@
+[package]
+name = "quoted-values"
+version = "0.1.0"
+edition = "2021"
+description = "Quoted values parser"
+homepage = "https://github.com/yaws-rs/codex"
+keywords = ["http", "uri", "encoder", "decoder"]
+license = "Apache-2.0/MIT"
+readme = "README.md"
+repository = "https://github.com/yaws-rs/quoted-values"
+categories = ["no-std", "science"]
+exclude = ["assets/"]
+
+[package.metadata.docs.rs]
+features = ["decode", "encode"]
+
+[features]
+default = []
+decode = ["dep:logos"]
+encode = []
+std = []
+
+[dependencies]
+logos = { version = "0.16", optional = true, default-features = false, features = ["export_derive"] }
+
+[dev-dependencies]
+insta = { version = "1.48" }
+rstest = { version = "0.26" }
+criterion = { version = "0.8" }
+
+[[bench]]
+name = "bencher"
+harness = false
+
+[[example]]
+name = "decode"
+required-features = ["decode"]
+harness = false
+doc-scrape-examples = true
