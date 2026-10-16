@@ -1,0 +1,43 @@
+---
+source: ychunked/src/decode.rs
+expression: "TcSnapshot { input, res, discard_to: Some(discard_at), receiver }"
+---
+TcSnapshot {
+    input: "16\r\nYeahChunkedStuffIs Fun\r\n0\r\n",
+    res: Ok(
+        WaitingSize(
+            28,
+        ),
+    ),
+    discard_to: Some(
+        "16\r\nYeahChunkedStuffIs Fun\r\n",
+    ),
+    receiver: TestReceiver {
+        data: [
+            [
+                89,
+                101,
+                97,
+                104,
+                67,
+                104,
+                117,
+                110,
+                107,
+                101,
+                100,
+                83,
+                116,
+                117,
+                102,
+                102,
+                73,
+                115,
+                32,
+                70,
+                117,
+                110,
+            ],
+        ],
+    },
+}

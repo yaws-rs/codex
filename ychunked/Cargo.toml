@@ -1,0 +1,40 @@
+[package]
+name = "ychunked"
+version = "0.0.1"
+edition = "2021"
+description = "Chucnked no_std + no-alloc Encoding-Decoding for the 1%"
+homepage = "https://github.com/yaws-rs/codex"
+keywords = ["http", "uri", "encoder", "decoder"]
+license = "Apache-2.0/MIT"
+readme = "README.md"
+repository = "https://github.com/yaws-rs/codex"
+categories = ["no-std", "science"]
+exclude = ["assets/"]
+
+[package.metadata.docs.rs]
+features = ["decode", "encode"]
+
+[features]
+default = ["decode", "encode"]
+alloc = []
+decode = ["dep:logos"]
+encode = ["dep:logos"]
+std = []
+
+[dependencies]
+logos = { version = "0.16", optional = true, default-features = false, features = ["export_derive"] }
+
+[dev-dependencies]
+insta = { version = "1.47" }
+rstest = { version = "0.26" }
+criterion = { version = "0.5" }
+
+[[bench]]
+name = "bencher"
+harness = false
+
+#[[example]]
+#name = "encode_fixed"
+#required-features = ["encode", "fixed"]
+#harness = false
+#doc-scrape-examples = true

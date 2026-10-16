@@ -1,0 +1,23 @@
+---
+source: ychunked/src/decode.rs
+expression: "TcSnapshot { input, res, discard_to: Some(discard_at), receiver }"
+---
+TcSnapshot {
+    input: "2\r\na",
+    res: Ok(
+        Decoding(
+            4,
+            1,
+        ),
+    ),
+    discard_to: Some(
+        "2\r\na",
+    ),
+    receiver: TestReceiver {
+        data: [
+            [
+                97,
+            ],
+        ],
+    },
+}
